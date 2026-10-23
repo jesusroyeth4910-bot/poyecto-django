@@ -1,0 +1,29 @@
+databases:
+  - name: proyecto-django-db
+    databaseName: proyecto_django
+    user: proyecto_django
+    plan: free
+
+services:
+  - type: web
+    name: proyecto-django
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: python manage.py ensure_deploy_superuser && gunicorn myproject.wsgi:application
+    healthCheckPath: /health/
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: proyecto-django-db
+          property: connectionString

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proyecto Django</title>
+  <style>
+    body {
+      align-items: center;
+      background: #f3f6fb;
+      color: #172033;
+      display: flex;
+      font-family: system-ui, sans-serif;
+      justify-content: center;
+      margin: 0;
+      min-height: 100vh;
+    }
+    main {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px #17203318;
+      max-width: 34rem;
+      padding: 3rem;
+      text-align: center;
+    }
+    h1 { margin-top: 0; }
+    a {
+      background: #155eef;
+      border-radius: 8px;
+      color: white;
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+    }
+    a:focus-visible { outline: 3px solid #172033; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Proyecto Django</h1>
+    <p>La aplicación está en línea.</p>
+    <a href="{% url 'admin:index' %}">Ir al panel de administración</a>
+  </main>
+</body>
+</html>
